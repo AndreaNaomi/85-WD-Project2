@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Ms+Madi&display=swap");
+
+.div {
+  width: 100%;
+  height: 100vh;
+  background-image: linear-gradient(
+    to right top,
+    #845ec2,
+    #e65faa,
+    #ff8080,
+    #ffbb61,
+    #f9f871
+  );
+  font-family: "Ms Madi", cursive;
+}
+
+h1 {
+  font-size: 200px;
+  color: antiquewhite;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+button {
+  margin-top: 100px;
+  background-color: rgba(250, 235, 215, 0.253);
+  border-radius: 10px;
+  width: 800px;
+  height: 100px;
+  font-family: "Ms Madi", cursive;
+  border: 2px solid rgba(216, 203, 203, 0.295);
+  color: white;
+  font-size: 70px;
+  cursor: pointer;
+  box-shadow: 3px 2px 22px 1px rgba(53, 10, 10, 0.5);
+}
+
+button:active {
+  transform: scale(0.98);
+  /* Scaling button to 0.98 to its original size */
+  box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.13);
+  /* Lowering the shadow */
+}
+
+p {
+  margin-top: 0;
+  color: white;
+  font-size: 50px;
+}
