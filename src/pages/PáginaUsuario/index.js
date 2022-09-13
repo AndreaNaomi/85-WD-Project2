@@ -2,8 +2,9 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 function PaginaUsuario() {
+
     const[loading,setLoading] = useState('false')
-    const[usuarios, setUsuarios] = useState([]);
+    const[usuarios, setUsuarios] = useState([])
 
     const [form, setForm] = useState({
         id_u : "",
@@ -22,7 +23,7 @@ function PaginaUsuario() {
         } 
     })
 ) 
-    console.log(userID)
+   
     useEffect(()=>{
         setLoading(false)
         async function fecthUsuario(){
@@ -38,46 +39,60 @@ function PaginaUsuario() {
     
     
 
-console.log(usuarios)
+
 
    
 
+async function handleSubmit(e) { 
+    e.preventDefault()
+    form['id_u'] = userID + 1
+
+    try {
+    await axios.post("https://ironrest.herokuapp.com/85-wd-user", form);
+        
+    } catch (error) {
+        console.log(error)
+    }
+}
     function handleChange(e) {
                 setForm({...form, [e.target.name]: e.target.value});
+
     }
-
-    async function handleSubmit(e) { 
-        e.preventDefault();
-        form['id_u'] = userID + 1
-
-        try {
-        await axios.post("https://ironrest.herokuapp.com/85-wd-user", form);
-            
-        } catch (error) {
-            console.log(error);
-        }
-    }
+  
 
 
-console.log(form)
-    return (
-        <div>
-            
-            <form onSubmit={handleSubmit}>
-                <label>Nome</label>
-                <input type="text" name="nome" placeholder="Nome" onChange={handleChange}/>
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <label>Nome</label>
+        <input
+          type="text"
+          name="nome"
+          placeholder="Nome"
+          onChange={handleChange}
+        />
 
-                <label>Email</label>
-                <input type="email" name="email" placeholder="Email" onChange={handleChange}/>
 
-                <label>Departamento</label>
-                <input type="text" name="departamento" placeholder="Departamento" onChange={handleChange}/>
+        <label>Email</label>
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          onChange={handleChange}
+        />
 
-                <button type="submit">Salvar</button>
-            </form>
+        <label>Departamento</label>
+        <input
+          type="text"
+          name="departamento"
+          placeholder="Departamento"
+          onChange={handleChange}
+        />
 
-        </div>
-    )
+        <button type="submit">Salvar</button>
+      </form>
+    </div>
+  );
 }
 
-export default PaginaUsuario
+export default PaginaUsuario;
