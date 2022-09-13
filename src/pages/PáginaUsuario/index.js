@@ -1,29 +1,66 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function PaginaUsuario() {
-  const [form, setForm] = useState({
-    nome: "",
-    email: "",
-    departamento: "",
-    tarefas: [],
-    projetos: [],
-  });
 
-  function handleChange(e) {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  }
+    const[loading,setLoading] = useState('false')
+    const[usuarios, setUsuarios] = useState([])
 
-  async function handleSubmit(e) {
-    e.preventDefault();
+    const [form, setForm] = useState({
+        id_u : "",
+        nome: "",
+        email: "",
+        departamento: "",
+        tarefas: [],
+        projetos: [],
+    });
+
+    let userID = 210
+ loading&&(
+    usuarios.forEach(element => {
+        if(element.id_u > userID){
+            userID = element.id_u
+        } 
+    })
+) 
+   
+    useEffect(()=>{
+        setLoading(false)
+        async function fecthUsuario(){
+            let response =   await axios.get("https://ironrest.herokuapp.com/85-wd-user")
+            setUsuarios(response.data)
+            setLoading(true)
+           }
+           fecthUsuario() 
+
+    },[])
+        
+    
+    
+    
+
+
+
+   
+
+async function handleSubmit(e) { 
+    e.preventDefault()
+    form['id_u'] = userID + 1
+
     try {
-      await axios.post("https://ironrest.herokuapp.com/85-wd-user", form);
+    await axios.post("https://ironrest.herokuapp.com/85-wd-user", form);
+        
     } catch (error) {
-      console.log(error);
+        console.log(error)
     }
-  }
+}
+    function handleChange(e) {
+                setForm({...form, [e.target.name]: e.target.value});
 
-  console.log(form);
+    }
+  
+
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -34,6 +71,7 @@ function PaginaUsuario() {
           placeholder="Nome"
           onChange={handleChange}
         />
+
 
         <label>Email</label>
         <input
