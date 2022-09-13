@@ -1,10 +1,26 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import {Toaster , toast }from 'react-hot-toast'
 
 function PaginaUsuario() {
     const[loading,setLoading] = useState('false')
     const[usuarios, setUsuarios] = useState([]);
 
+   
+   
+    useEffect(()=>{
+        setLoading(false)
+        async function fecthUsuario(){
+            let response =   await axios.get("https://ironrest.herokuapp.com/85-wd-user")
+            setUsuarios(response.data)
+            setLoading(true)
+           }
+           fecthUsuario() 
+    
+    },[])
+   
+   
+   
     const [form, setForm] = useState({
         id_u : "",
         nome: "",
@@ -22,23 +38,13 @@ function PaginaUsuario() {
         } 
     })
 ) 
-    console.log(userID)
-    useEffect(()=>{
-        setLoading(false)
-        async function fecthUsuario(){
-            let response =   await axios.get("https://ironrest.herokuapp.com/85-wd-user")
-            setUsuarios(response.data)
-            setLoading(true)
-           }
-           fecthUsuario() 
-
-    },[])
+   
         
     
     
     
 
-console.log(usuarios)
+
 
    
 
@@ -56,12 +62,16 @@ console.log(usuarios)
         } catch (error) {
             console.log(error);
         }
+
+        toast.success('Successfully toasted!')
+
     }
 
 
-console.log(form)
+
     return (
         <div>
+            <div><Toaster  position="top-center"  reverseOrder={false}/></div>
             
             <form onSubmit={handleSubmit}>
                 <label>Nome</label>
