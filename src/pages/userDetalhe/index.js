@@ -2,60 +2,64 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import EditProject from "../../components/editarProjeto";
+import EditUser from "../EditarUsuario";
 
-function DetalhesProjetos() {
-  const [tarefas, setTarefas] = useState([]);
-  const [projetos, setProjetos] = useState([]);
+function UserDetalhe() {
   const [loading, setLoading] = useState(false);
-
-
+  const [usuario, setUsuario] = useState([
+    {
+      id_u: "",
+      nome: "",
+      email: "",
+      departamento: "",
+      tarefas: [],
+      projetos: [],
+    },
+  ]);
+  const [tarefas, setTarefa] = useState([]);
   const { id } = useParams();
-  let listatarefas = [];
+  const listatarefa = [];
 
   useEffect(() => {
     setLoading(false);
-    async function fecthProject() {
+    async function fecthUsuario() {
       let response = await axios.get(
-        `https://ironrest.herokuapp.com/85-wd-project/${id}`
+        `https://ironrest.herokuapp.com/85-wd-user/${id}`
       );
-      setProjetos(response.data);
+      setUsuario(response.data);
       setLoading(true);
     }
-    fecthProject();
+    fecthUsuario();
   }, []);
-  console.log(projetos);
 
   useEffect(() => {
-    async function fecthTarefa() {
+    async function fecthTarefas() {
       let response = await axios.get(
         `https://ironrest.herokuapp.com/85-wd-to-do`
       );
-      setTarefas(response.data);
+      setTarefa(response.data);
     }
-    fecthTarefa();
+    fecthTarefas();
   }, []);
 
- 
-
   loading &&
-    projetos.tarefas.forEach((element) => {
+    usuario.tarefas.forEach((element) => {
       tarefas.forEach((tarefa) => {
         if (tarefa.id_t === element) {
-          listatarefas.push(tarefa);
+          listatarefa.push(tarefa);
         }
       });
     });
+
+  console.log(listatarefa);
 
   return (
     <>
       {loading && (
         <div>
-          <h1>{projetos.nomeprojeto}</h1>
-          <p>{projetos.data}</p>
-          <p>{projetos.opcoesprioridades}</p>
-          <p>{projetos.statusProjeto}</p>
-          <p>{projetos.descprojeto}</p>
+          <h1>{usuario.nome}</h1>
+          <p>{usuario.email}</p>
+          <p>{usuario.departamento}</p>
         </div>
       )}
       <h1>ola</h1>
@@ -76,7 +80,7 @@ function DetalhesProjetos() {
           </thead>
           <tbody>
             {loading &&
-              listatarefas.map((element) => {
+              listatarefa.map((element) => {
                 return (
                   <tr>
                     <td style={{ padding: "20px" }}>
@@ -97,9 +101,9 @@ function DetalhesProjetos() {
           </tbody>
         </table>
       </div>
-      <EditProject projeto={projetos} setProjeto={setProjetos} id={id}/>
+      <EditUser id={id} usuario={usuario} setUsuario={setUsuario} listatarefa={listatarefa} />
     </>
   );
 }
 
-export default DetalhesProjetos;
+export default UserDetalhe;

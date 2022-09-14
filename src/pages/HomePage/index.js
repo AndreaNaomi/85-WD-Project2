@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import style from "./style.module.css";
 import React from "react";
 
+
 function HomePage() {
   const [projetos, setProjetos] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -20,6 +21,7 @@ function HomePage() {
   }, []);
   return (
     <>
+   
       <div>
         <div className="home-Page">
         <h3 className={style.home}>Terça-feira, 13 de Setembro de 2022.</h3>
@@ -69,7 +71,9 @@ function HomePage() {
                       <p>{element.statusProjeto}</p>
                     </td>
                     <td style={{ padding: "20px" }}>
-                      <button>Detalhes</button>
+                      <Link to={`/projetos/${element._id}`}>
+                        <button>Detalhes</button>
+                      </Link>
                     </td>
                   </tr>
                 );
