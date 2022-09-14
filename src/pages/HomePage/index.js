@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import style from "./style.module.css";
 import React from "react";
 
-
 function HomePage() {
   const [projetos, setProjetos] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -21,20 +20,13 @@ function HomePage() {
   }, []);
   return (
     <>
-   
       <div>
-        <div className="home-Page">
-        <h3 className={style.home}>Terça-feira, 13 de Setembro de 2022.</h3>
-        <h2 className={style.bomdia}>Bom dia, Andrea!</h2>
-        </div>
-
-        <div className="accordion" id="accordionPanelsStayOpen">
-          <div className="accordion-item">
-            <h2 className="accordion-header" id="panelsStayOpen-headinOne">
-              <button className="accordion-button"/>
-            </h2>
+        <nav className="navbar shadow-md rounded-bottom"></nav>
+        <div>
+          <div className="home-Page">
+            <h3 className={style.home}>Terça-feira, 13 de Setembro de 2022.</h3>
+            <h2 className={style.bomdia}>Bom dia, Andrea!</h2>
           </div>
-
         </div>
 
         <table style={{ margin: "20px" }}>
@@ -45,6 +37,7 @@ function HomePage() {
               <th style={{ padding: "20px" }}>Dead Line</th>
               <th style={{ padding: "20px" }}>Prioridade</th>
               <th style={{ padding: "20px" }}>Status</th>
+
               <th style={{ padding: "20px" }}>
                 <Link to="/CreateProject">
                   <button>Criar Projeto</button>
@@ -56,26 +49,40 @@ function HomePage() {
             {loading &&
               projetos.map((element) => {
                 return (
-                  <tr>
-                    <td style={{ padding: "20px" }}>
-                      <p>{element.nomeprojeto}</p>
-                    </td>
-                    <td style={{ padding: "20px" }}>
-                      <p>{element.descprojeto} </p>
-                    </td>
-                    <td style={{ padding: "20px" }}>{element.data}</td>
-                    <td style={{ padding: "20px" }}>
-                      {element.opcoesprioridades}
-                    </td>
-                    <td style={{ padding: "20px" }}>
-                      <p>{element.statusProjeto}</p>
-                    </td>
-                    <td style={{ padding: "20px" }}>
-                      <Link to={`/projetos/${element._id}`}>
-                        <button>Detalhes</button>
-                      </Link>
-                    </td>
-                  </tr>
+                  <>
+                    {/*  <div className={style.card}>
+                    <p className={style.titulo}>{element.nomeprojeto}</p>
+                    <p > {element.descprojeto} </p>
+                    <p>{element.data}</p>
+                    <p>{element.opcoesprioridades}</p>
+                    <p>{element.statusProjeto}</p>
+                    <Link to={`/projetos/${element._id}`}>
+                      <button>Detalhes</button>
+                    </Link>
+                    </div>
+                  </>
+ */}
+                    <tr>
+                      <td style={{ padding: "20px" }}>
+                        <p>{element.nomeprojeto}</p>
+                      </td>
+                      <td style={{ padding: "20px" }}>
+                        <p>{element.descprojeto} </p>
+                      </td>
+                      <td style={{ padding: "20px" }}>{element.data}</td>
+                      <td style={{ padding: "20px" }}>
+                        {element.opcoesprioridades}
+                      </td>
+                      <td style={{ padding: "20px" }}>
+                        <p>{element.statusProjeto}</p>
+                      </td>
+                      <td style={{ padding: "20px" }}>
+                        <Link to={`/projetos/${element._id}`}>
+                          <button>Detalhes</button>
+                        </Link>
+                      </td>
+                    </tr>
+                  </>
                 );
               })}
           </tbody>
