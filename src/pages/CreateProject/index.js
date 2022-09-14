@@ -1,14 +1,47 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState , useEffect } from "react";
+import TelaTarefa from "../TelaTarefa";
 
 function CreateProject() {
+  const [projetos, setProjetos] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const[criartarefa, setCriartarefa] = useState(false)
+
   const [form, setForm] = useState({
+    id_p: 400,
     nomeprojeto: "",
     descprojeto: "",
     data: "",
     opcoesprioridades: "",
     statusProjeto: "",
+    tarefas : [],
+    usuarios : []
   });
+
+
+
+  let projID = 400;
+  loading &&
+    projetos.forEach((element) => {
+      if (element.id_p > projID) {
+        projID = element.id_p;
+      }
+    });
+
+
+    useEffect(() => {
+      setLoading(false);
+      async function fecthUsuario() {
+        let response = await axios.get(
+          "https://ironrest.herokuapp.com/85-wd-project"
+        );
+        setProjetos(response.data);
+        setLoading(true);
+      }
+      fecthUsuario();
+    }, [criartarefa]);
+  
+
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -16,16 +49,19 @@ function CreateProject() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    form["id_p"] = projID + 1;
     try {
       await axios.post("https://ironrest.herokuapp.com/85-wd-project", form);
     } catch (error) {
       console.log(error);
     }
+    setCriartarefa(!criartarefa)
   }
 
-  console.log(form);
+
 
   return (
+    <>
     <div>
       <form
         style={{ display: "flex", flexDirection: "column", width: "25%" }}
@@ -80,7 +116,14 @@ function CreateProject() {
         <button type="submit">subbmit</button>
       </form>
     </div>
+    
+
+    {criartarefa&&(
+      <TelaTarefa projID={projID} projetos={projetos} setProjetos={setProjetos}/>)}
+    </>
   );
+ 
+
 }
 
 export default CreateProject;

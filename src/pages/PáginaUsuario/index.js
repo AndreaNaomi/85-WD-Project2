@@ -14,39 +14,50 @@ function PaginaUsuario() {
     projetos: [],
   });
 
-  let userID = 210;
-  loading &&
-    usuarios.forEach((element) => {
-      if (element.id_u > userID) {
-        userID = element.id_u;
-      }
-    });
+    let userID = 210
+ loading&&(
+    usuarios.forEach(element => {
+        if(element.id_u > userID){
+            userID = element.id_u
+        } 
+    })
+) 
+   
+    useEffect(()=>{
+        setLoading(false)
+        async function fecthUsuario(){
+            let response =   await axios.get("https://ironrest.herokuapp.com/85-wd-user")
+            setUsuarios(response.data)
+            setLoading(true)
+           }
+           fecthUsuario() 
 
-  useEffect(() => {
-    setLoading(false);
-    async function fecthUsuario() {
-      let response = await axios.get(
-        "https://ironrest.herokuapp.com/85-wd-user"
-      );
-      setUsuarios(response.data);
-      setLoading(true);
-    }
-    fecthUsuario();
-  }, []);
+    },[])
+        
+    
+    
+    
 
-  async function handleSubmit(e) {
-    e.preventDefault();
-    form["id_u"] = userID + 1;
+
+
+   
+
+async function handleSubmit(e) { 
+    e.preventDefault()
+    form['id_u'] = userID + 1
 
     try {
       await axios.post("https://ironrest.herokuapp.com/85-wd-user", form);
     } catch (error) {
       console.log(error);
     }
-  }
-  function handleChange(e) {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  }
+}
+    function handleChange(e) {
+                setForm({...form, [e.target.name]: e.target.value});
+
+    }
+  
+
 
   return (
     <div>
