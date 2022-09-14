@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom"; 
 import {useState} from 'react'
+import DeleteTarefa from "../deteltarTarefa";
 
 function TaskeEdit({tarefa, setTarefa, id}) {
 
@@ -65,7 +66,7 @@ function TaskeEdit({tarefa, setTarefa, id}) {
 
           <button type="submit">Salvar</button>
             </form>
-
+      <DeleteTarefa id={id} tarefa={tarefa} setTarefa={setTarefa} />
     </>);
 }
 

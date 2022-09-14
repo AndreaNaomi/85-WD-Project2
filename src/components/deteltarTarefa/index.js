@@ -1,34 +1,37 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-function DeleteUser({ usuario, setUsuario, id, listatarefa }) {
-  const [tarefas, setTarefas] = useState([]);
+function DeleteTarefa({  setTarefa, id}) {
+  const [tarefa, setUtarefas] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(false);
-    async function fecthTarefa() {
+    async function fecthTUsuario() {
       let response = await axios.get(
-        "https://ironrest.herokuapp.com/85-wd-to-do"
+        `https://ironrest.herokuapp.com/85-wd-to-do/${id}`
       );
-      setTarefas(response.data);
+      setUtarefas(response.data);
       setLoading(true);
     }
-    fecthTarefa();
+    fecthTUsuario();
   }, []);
-function deletar(){
-  listatarefa.map((tarelement) => {
-    tarefas.map((element) => {
-      if (element.id_t === tarelement.id_t) {
+
+
+
+/* function deletaruser(){
+  tarefa.usuarios.map((userlement) => {
+    usuarios.map((element) => {
+      if (element.id_t === userlement.id_t) {
         const clone = { ...element };
-        let index = clone.usuario.indexOf(usuario.id_u);
+        let index = clone.tarefas.indexOf(tarefa.id_u);
         clone.usuario.splice(index, 1);
         submit(clone);
       }
     });
   });
 }
-
+ */
   async function submit(projeto) {
     try {
       let id = projeto._id;
@@ -43,9 +46,9 @@ function deletar(){
 
 
   async function handleDelete() {
-    deletar()
+    
     try {
-      await axios.delete(`https://ironrest.herokuapp.com/85-wd-user/${usuario._id}`);
+      await axios.delete(`https://ironrest.herokuapp.com/85-wd-to-do/${tarefa._id}`);
     } catch (error) {
       console.log(error);
     }
@@ -58,4 +61,4 @@ function deletar(){
   );
 }
 
-export default DeleteUser;
+export default DeleteTarefa;
