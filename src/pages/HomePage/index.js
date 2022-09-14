@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
+
 function HomePage() {
   const [projetos, setProjetos] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -18,6 +19,7 @@ function HomePage() {
   }, []);
   return (
     <>
+   
       <div>
         <table style={{ margin: "20px" }}>
           <thead>
@@ -53,7 +55,9 @@ function HomePage() {
                       <p>{element.statusProjeto}</p>
                     </td>
                     <td style={{ padding: "20px" }}>
-                      <button>Detalhes</button>
+                      <Link to={`/projetos/${element._id}`}>
+                        <button>Detalhes</button>
+                      </Link>
                     </td>
                   </tr>
                 );

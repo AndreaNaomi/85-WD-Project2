@@ -1,9 +1,11 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import UserPool2 from "../../components/userpool2";
 
 function PaginaUsuario() {
   const [loading, setLoading] = useState("false");
   const [usuarios, setUsuarios] = useState([]);
+  const [clicou , setClicou] = useState(false)
 
   const [form, setForm] = useState({
     id_u: "",
@@ -47,9 +49,11 @@ function PaginaUsuario() {
     } catch (error) {
       console.log(error);
     }
+    setClicou(!clicou)
   }
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
+    
   }
 
 
@@ -58,6 +62,7 @@ function PaginaUsuario() {
 
 
   return (
+    <>
     <div>
       <form onSubmit={handleSubmit}>
         <label>Nome</label>
@@ -87,6 +92,9 @@ function PaginaUsuario() {
         <button type="submit">Salvar</button>
       </form>
     </div>
+    <h1>usuarios</h1>
+    <UserPool2 clicou={clicou} />
+    </>
   );
 }
 

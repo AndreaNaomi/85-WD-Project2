@@ -25,8 +25,9 @@ function TelaTarefa({ projID, projetos, setProjetos }) {
       if (element.id_t > tarID) {
         tarID = element.id_t;
       }
+      form["id_t"] = tarID + 1;
     });
-
+console.log(tarID)
   useEffect(() => {
     setLoading(false);
     async function fecthUsuario() {
@@ -56,7 +57,7 @@ function TelaTarefa({ projID, projetos, setProjetos }) {
      
       if (element.id_p == projID ) {
         const clonep = { ...element };
-        clonep.tarefas.push(tarID );
+        clonep.tarefas.push(tarID + 1);
        
         Submitp(clonep);
       }
@@ -96,8 +97,8 @@ function TelaTarefa({ projID, projetos, setProjetos }) {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    form["id_t"] = tarID + 1;
-
+    
+    console.log(tarID)
     appendar();
 
     vincularProjeto();
@@ -110,7 +111,7 @@ function TelaTarefa({ projID, projetos, setProjetos }) {
   }
 
   function adicionarUsers() {
-    listaUser.forEach((element) => {
+      listaUser.forEach((element) => {
       form.usuario.push(element.id);
     });
   }
@@ -118,7 +119,7 @@ function TelaTarefa({ projID, projetos, setProjetos }) {
     <>
       <div>
         <form onSubmit={handleSubmit}>
-          <p>{projID + 1}</p>
+         
 
           <label>Nome da Tarefa</label>
           <input
