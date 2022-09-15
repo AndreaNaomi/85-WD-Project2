@@ -22,19 +22,25 @@ function HomePage() {
     fecthUsuario();
   }, []);
 
+  const current = new Date();
+  const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
+
+  
   console.log(projetos);
   return (
     <div className={style.divpai}>
   
 
-      <Link to="/">
+      <Link to="/" className={style.homeout}>
       <HomeOutlined />
       </Link>
 
+      <div className="App">
+      <h2><b>Hoje, {date}.</b></h2>
+      </div>
       {/* <div className={style.titulohome}> */}
       <div>
-        <h3 className={style.home}>Terça-feira, 13 de Setembro de 2022.</h3>
-        <h2 className={style.bomdia}>Bom dia, Andrea!</h2>
+        <h2 className={style.bomdia}>Gestão de projetos</h2>
       </div>
 
       <div style={{ padding: "20px" }}>
@@ -48,7 +54,7 @@ function HomePage() {
         {loading &&
           projetos.map((element) => {
             return (
-              <div key={element._id}>
+              <div key={element._id} id={style.cardP}>
              
                   <div className="card border-secondary mb-3" id={style.card2}>
                   <div className="card-header">{element.nomeprojeto}</div>
