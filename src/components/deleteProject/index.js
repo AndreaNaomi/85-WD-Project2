@@ -1,7 +1,9 @@
 import axios from 'axios'
+import {useNavigate } from 'react-router-dom'
 
 
 function DeleteProject({projeto}) {
+  const navigate = useNavigate();
      async function handleDelete() {
     
         try {
@@ -9,11 +11,12 @@ function DeleteProject({projeto}) {
         } catch (error) {
           console.log(error);
         }
+        navigate("/home");
       }
     
       return (
         <>
-          <button onClick={handleDelete}>deletar</button>
+          <button  className="btn btn-danger" onClick={handleDelete}>deletar</button>
         </>
       );
     }
