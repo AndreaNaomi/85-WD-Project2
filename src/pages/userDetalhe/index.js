@@ -4,8 +4,10 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import EditUser from "../EditarUsuario";
 
+
 function UserDetalhe() {
   const [loading, setLoading] = useState(false);
+  const [showForm, setShowForm] = useState(false);
   const [usuario, setUsuario] = useState([
     {
       id_u: "",
@@ -53,9 +55,9 @@ function UserDetalhe() {
 
   console.log(listatarefa);
 
-  return (
+  return(
     <>
-      {loading && (
+     {loading && (
         <div>
           <h1>{usuario.nome}</h1>
           <p>{usuario.email}</p>
@@ -71,9 +73,10 @@ function UserDetalhe() {
             <tr>
               <th style={{ padding: "20px" }}>Tarefa</th>
               <th style={{ padding: "20px" }}>Descrição</th>
+              <th style={{ padding: "20px" }}>Data Limite</th>
               <th style={{ padding: "20px" }}>
                 <Link to="/CreateProject">
-                  <button>Criar Tarefa</button>
+                  <button className="btn btn-secondary btn-sm">Criar Tarefa</button>
                 </Link>
               </th>
             </tr>
@@ -89,10 +92,13 @@ function UserDetalhe() {
                     <td style={{ padding: "20px" }}>
                       <p>{element.descrição} </p>
                     </td>
+                    <td style={{ padding: "20px" }}>
+                      <p>{element.data} </p>
+                    </td>
 
                     <td style={{ padding: "20px" }}>
                       <Link to={`/tarefa/${element._id}`}>
-                        <button>Detalhes</button>
+                        <button className="btn btn-primary btn-sm">Detalhes</button>
                       </Link>
                     </td>
                   </tr>
@@ -101,9 +107,13 @@ function UserDetalhe() {
           </tbody>
         </table>
       </div>
-      <EditUser id={id} usuario={usuario} setUsuario={setUsuario} listatarefa={listatarefa} />
+      <button onClick={() => setShowForm(!showForm)} className="btn btn-primary ">Editar Usuario</button>
+      
+      {showForm === true &&     
+      <EditUser id={id} usuario={usuario} setUsuario={setUsuario} listatarefa={listatarefa} show={showForm} setShow={setShowForm} />
+      }
     </>
-  );
+  )
 }
 
 export default UserDetalhe;

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import styles from "./style.module.css";
+
+import { Link } from "react-router-dom";
 
 function UserPool({ listaUser, setListauser }) {
   const [usuarios, setUsuarios] = useState([]);
@@ -18,29 +19,47 @@ function UserPool({ listaUser, setListauser }) {
     fecthUsuario();
   }, []);
   function selectUser(id, nome) {
-    setListauser([...listaUser, {id, nome}]); 
-      
+    setListauser([...listaUser, { id, nome }]);
   }
 
   return (
     <>
-      {loading && (
-        <div className={styles.container}>
-          {usuarios.map((element) => {
-            return (
-              <button onClick={() => selectUser(element.id_u, element.nome)}>
-                <div className={styles.card}>
-                  <div>FOTO AQUI</div>
-                  <div>
-                    <p>{element.nome}</p>
-                    <p>{element.departamento}</p>
-                  </div>
-                </div>
-              </button>
-            );
-          })}
-        </div>
-      )}
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Setor</th>
+          </tr>
+        </thead>
+        <tbody>
+          {loading &&
+            usuarios.map((element) => {
+              return (
+                <>
+                  <tr>
+                    <td>
+                      <Link to={`/usuario/${element._id}`}>
+                        <p>{element.nome}</p>
+                      </Link>
+                    </td>
+                    <td>
+                      <p>{element.departamento} </p>
+                    </td>
+
+                    <td>
+                      <button
+                        className="btn btn-primary btn-sm"
+                        onClick={() => selectUser(element.id_u, element.nome)}
+                      >
+                        Adicinar
+                      </button>
+                    </td>
+                  </tr>
+                </>
+              );
+            })}
+        </tbody>
+      </table>
     </>
   );
 }
