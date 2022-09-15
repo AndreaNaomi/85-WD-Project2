@@ -28,6 +28,12 @@
 .cardpai {
   display: flex;
   flex-direction: row;
+  margin-left: 20px;
+}
+
+.cardP {
+  display: flex;
+  margin-left: 80px;
 }
 
 .HomeOutlined {
@@ -35,5 +41,21 @@
 }
 
 #card2 {
-    background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.3);
+  margin-left: 15px;
+  word-break: break-all;
+  width: 250px;
+  height: 320px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10%;
+  border-radius: 12px;
+}
+
+#card2:hover {
+  box-shadow: 4px 4px 4px 4px;
+}
+
+.titletitle {
 }

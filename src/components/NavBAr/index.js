@@ -1,36 +1,34 @@
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 import styles from "./style.module.css";
 import { UserOutlined } from "@ant-design/icons";
-
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import { HomeOutlined } from "@ant-design/icons";
 
 function NavBar() {
-    return ( 
-        <div className={styles.navbarpai}>
-        <nav class="navbar navbar-expand-lg bg-light">
-  <div class="container-fluid">
-  <Link class="navbar-brand" to='/Home'><b>Task it - Daily Management</b></Link>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div className={styles.navb} id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-        <Link class="nav-link active" aria-current="page" to='/PaginaUsuario'>Usuarios</Link>
-        </li>
-
-        <UserOutlined />
-       
-      </ul>
-    </div>
-  </div>
-</nav>
-        
-       
-       
-        </div>
-     );
-
-
+  return (
+    <>
+      <Navbar bg="dark" variant="dark">
+        <Container>
+          <Navbar.Brand href="#home">
+            Task it{" "}
+            <small className="text-muted">
+              {" "}
+              &nbsp;&nbsp; - Daily Management
+            </small>
+          </Navbar.Brand>
+          <Nav className="justify-content-end">
+            <Nav.Link href="/">
+              <HomeOutlined /> Home
+            </Nav.Link>
+            <Nav.Link href="/PaginaUsuario">+ Add Users</Nav.Link>
+            <Nav.Link href="#pricing">About Us</Nav.Link>
+          </Nav>
+        </Container>
+      </Navbar>
+    </>
+  );
 }
 
 export default NavBar;
