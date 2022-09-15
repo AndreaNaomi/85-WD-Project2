@@ -5,7 +5,7 @@ import UserPool2 from "../../components/userpool2";
 function PaginaUsuario() {
   const [loading, setLoading] = useState("false");
   const [usuarios, setUsuarios] = useState([]);
-  const [clicou , setClicou] = useState(false)
+  const [clicou, setClicou] = useState(false);
 
   const [form, setForm] = useState({
     id_u: "",
@@ -24,7 +24,6 @@ function PaginaUsuario() {
       }
     });
 
-    
   useEffect(() => {
     setLoading(false);
     async function fecthUsuario() {
@@ -37,9 +36,6 @@ function PaginaUsuario() {
     fecthUsuario();
   }, []);
 
-
-
-
   async function handleSubmit(e) {
     e.preventDefault();
     form["id_u"] = userID + 1;
@@ -49,51 +45,46 @@ function PaginaUsuario() {
     } catch (error) {
       console.log(error);
     }
-    setClicou(!clicou)
+
+    setClicou(!clicou);
   }
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
-    
   }
-
-
-
-
-
 
   return (
     <>
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label>Nome</label>
-        <input
-          type="text"
-          name="nome"
-          placeholder="Nome"
-          onChange={handleChange}
-        />
+      <div>
+        <form onSubmit={handleSubmit}>
+          <label>Nome</label>
+          <input
+            type="text"
+            name="nome"
+            placeholder="Nome"
+            onChange={handleChange}
+          />
 
-        <label>Email</label>
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          onChange={handleChange}
-        />
+          <label>Email</label>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            onChange={handleChange}
+          />
 
-        <label>Departamento</label>
-        <input
-          type="text"
-          name="departamento"
-          placeholder="Departamento"
-          onChange={handleChange}
-        />
+          <label>Departamento</label>
+          <input
+            type="text"
+            name="departamento"
+            placeholder="Departamento"
+            onChange={handleChange}
+          />
 
-        <button type="submit">Salvar</button>
-      </form>
-    </div>
-    <h1>usuarios</h1>
-    <UserPool2 clicou={clicou} />
+          <button type="submit">Salvar</button>
+        </form>
+      </div>
+      <h1>usuarios</h1>
+      <UserPool2 clicou={clicou} />
     </>
   );
 }
