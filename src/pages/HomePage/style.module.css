@@ -1,8 +1,15 @@
-/* .card {
+
+.titulohome {
+    border-top: 30px;
+}
+
+.card {
     border: 2px black solid;
     margin: 10px;
     display: flex;
     flex-direction: column;
+    width: 280px;
+  
 }
 
 .titulo {
@@ -10,4 +17,13 @@
     font-style: bold;
     font-size: larger;
     padding: 20px;
-} */
+}
+
+.cardpai {
+    display: flex;
+    flex-direction: row;
+}
+
+.HomeOutlined {
+    width: 30px;
+}

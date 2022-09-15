@@ -1,4 +1,5 @@
 import axios from 'axios'
+import DeleteProject from '../deleteProject';
 function EditProject({ projeto, setProjeto, id }) {
   async function handleSubmit(e) {
     e.preventDefault();
@@ -75,6 +76,7 @@ function EditProject({ projeto, setProjeto, id }) {
 
         <button type="submit">subbmit</button>
       </form>
+      <DeleteProject projeto={projeto} />
     </>
   );
 }
