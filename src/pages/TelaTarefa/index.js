@@ -78,7 +78,9 @@ function TelaTarefa({ projID, projetos, setProjetos, show, setShow }) {
         `https://ironrest.herokuapp.com/85-wd-project/${id}`,
         projeto
       );
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   function appendar() {
@@ -133,6 +135,7 @@ function TelaTarefa({ projID, projetos, setProjetos, show, setShow }) {
      
       <div>
         <form onSubmit={handleSubmit}>
+
           <div class="mb-3">
             <label label for="formGroupExampleInput" class="form-label">
               Nome da Tarefa
@@ -169,6 +172,7 @@ function TelaTarefa({ projID, projetos, setProjetos, show, setShow }) {
           <button className="btn btn-primary" type="submit">
             Salvar
           </button>
+
         </form>
       </div>
       

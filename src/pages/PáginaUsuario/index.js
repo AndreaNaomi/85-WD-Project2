@@ -83,7 +83,7 @@ function PaginaUsuario() {
               onChange={handleChange}
             />
           </div>
-          <div class="mb-3">
+          <div className="mb-3">
             <label for="formGroupExampleInput" class="form-label">
               Departamento
             </label>

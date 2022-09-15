@@ -66,7 +66,7 @@ function UserDetalhe() {
       )}
       
       <div>
-        <h2> tarefas</h2>
+        <h2>tarefas</h2>
 
         <table class="table table-hover" style={{ margin: "20px" }}>
           <thead>
