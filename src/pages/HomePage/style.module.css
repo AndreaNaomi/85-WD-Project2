@@ -1,13 +1,13 @@
 .divpai {
-    background-image: url("../../assets/BackGround/rm218batch4-ning-40.jpg");
-    background-size: cover;
-
-    
+  background-image: url("../../assets/BackGround/rm218batch4-ning-40.jpg");
+  background-size: cover;
+  height: 200vh;
+  width: 200vw;
 }
 
-.titulohome {
-    border-top: 30px;
-}
+/* .titulohome {
+  border-top: 30px;
+} */
 /* 
 .card {
     border: 2px black solid;
@@ -26,10 +26,14 @@
 } */
 
 .cardpai {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .HomeOutlined {
-    width: 30px;
+  width: 30px;
+}
+
+#card2 {
+    background-color: rgba(255, 255, 255, 0.3);
 }
