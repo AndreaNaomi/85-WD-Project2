@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import {useNavigate } from 'react-router-dom'
 
 function DeleteUser({ usuario, setUsuario, id, listatarefa }) {
   const [tarefas, setTarefas] = useState([]);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(false);
@@ -49,6 +51,7 @@ function deletar(){
     } catch (error) {
       console.log(error);
     }
+    navigate("/home");
   }
 
   return (

@@ -4,7 +4,9 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import styles from "./style.module.css";
 import TaskeEdit from "../../components/editarTarefa";
+
 function DetalheTarefa() {
+  const [showForm, setShowForm] = useState(false);
   const [loading, setLoading] = useState(false);
   const [usuarios, setUsuarios] = useState([]);
   const [tarefa, setTarefa] = useState([]);
@@ -47,7 +49,8 @@ function DetalheTarefa() {
     <>
       <h1>{tarefa.tarefa}</h1>
       <p>{tarefa.descrição}</p>
-
+      <p>{tarefa.data}</p>
+<h1>Usuarios</h1>
       {loading && (
         <div className={styles.container}>
           {listausers.map((element) => {
@@ -55,13 +58,17 @@ function DetalheTarefa() {
               <>
                 <Link to={`/usuario/${element._id}`}>
                   <button>
-                    <div className={styles.card}>
-                      <div>FOTO AQUI</div>
-                      <div>
-                        <p>{element.nome}</p>
-                        <p>{element.departamento}</p>
-                      </div>
+                  <div class="card" style={{ width: "10rem" }}>
+                    <img
+                      src="https://www.seekpng.com/png/detail/966-9665493_my-profile-icon-blank-profile-image-circle.png"
+                      class="card-img-top"
+                      alt="..."
+                    />
+                    <div class="card-body">
+                      <h5 class="card-title">{element.nome}</h5>
+                      <p class="card-text">{element.departamento}</p>
                     </div>
+                  </div>
                   </button>
                 </Link>
               </>
@@ -69,7 +76,10 @@ function DetalheTarefa() {
           })}
         </div>
       )}
-      <TaskeEdit tarefa={tarefa} setTarefa={setTarefa} id={id}/>
+      <button onClick={() => setShowForm(!showForm)} className="btn btn-primary ">Editar Tarefa</button>
+
+      {showForm === true &&     (
+      <TaskeEdit tarefa={tarefa} setTarefa={setTarefa} id={id}  show={showForm} setShow={setShowForm}/>)}
     </>
   );
 }

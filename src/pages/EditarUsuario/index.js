@@ -2,7 +2,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom"; 
 import {useState} from 'react'
 import DeleteUser from "../../components/DeletarUser";
-function EditUser({usuario, setUsuario, id,listatarefa}) {
+import Modal from "react-bootstrap/Modal";
+function EditUser({usuario, setUsuario, id,listatarefa, setShow, show}) {
   /* const navigate = useNavigate(); */
   
   
@@ -41,6 +42,11 @@ function EditUser({usuario, setUsuario, id,listatarefa}) {
   } */
 
   return(
+    <Modal show={show} onHide={() => setShow(false)}>
+      <Modal.Header closeButton>
+        <Modal.Title>Edite seu perfil</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
     <div>
     <form onSubmit={handleSubmit}>
     <div class="mb-3">
@@ -69,11 +75,17 @@ function EditUser({usuario, setUsuario, id,listatarefa}) {
               onChange={handleChange}
             />
             </div>
-
-      <button className="btn btn-primary" type="submit">Salvar</button>
-      <DeleteUser  usuario={usuario} setUsuario={setUsuario} id={id} listatarefa={listatarefa} />
+            
+            
+      <button onClick={() => setShow(!show)} className="btn btn-primary" type="submit">Salvar</button>
     </form>
   </div>
+  </Modal.Body>
+  <Modal.Footer className="justify-content-between">
+      <DeleteUser  usuario={usuario} setUsuario={setUsuario} id={id} listatarefa={listatarefa} />
+      </Modal.Footer>
+    </Modal>
+  
   
 );
   

@@ -1,8 +1,13 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import UserPool from "../../components/EditarUsuario/userPoll";
+import Modal from "react-bootstrap/Modal";
+import { useNavigate } from "react-router-dom";
 
-function TelaTarefa({ projID, projetos, setProjetos }) {
+
+function TelaTarefa({ projID, projetos, setProjetos, show, setShow }) {
+
+  const [carregar,setCarregar] = useState(true)
   const [usuarios, setUsuarios] = useState([]);
   const [tarefas, setTarefas] = useState([]);
   const [loading, setLoading] = useState("false");
@@ -11,9 +16,11 @@ function TelaTarefa({ projID, projetos, setProjetos }) {
     id_t: 300,
     tarefa: "",
     descrição: "",
+    data: "",
     projeto: projID + 1,
     usuario: [],
   });
+  const navigate = useNavigate();
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -27,7 +34,7 @@ function TelaTarefa({ projID, projetos, setProjetos }) {
       }
       form["id_t"] = tarID + 1;
     });
-console.log(tarID)
+  console.log(tarID);
   useEffect(() => {
     setLoading(false);
     async function fecthUsuario() {
@@ -54,11 +61,10 @@ console.log(tarID)
 
   function vincularProjeto() {
     projetos.forEach((element) => {
-     
-      if (element.id_p == projID ) {
+      if (element.id_p == projID) {
         const clonep = { ...element };
         clonep.tarefas.push(tarID + 1);
-       
+
         Submitp(clonep);
       }
     });
@@ -97,8 +103,8 @@ console.log(tarID)
 
   async function handleSubmit(e) {
     e.preventDefault();
-    
-    console.log(tarID)
+
+    console.log(tarID);
     appendar();
 
     vincularProjeto();
@@ -108,47 +114,87 @@ console.log(tarID)
     } catch (error) {
       console.log(error);
     }
+    navigate("/home");
   }
 
   function adicionarUsers() {
-      listaUser.forEach((element) => {
+    listaUser.forEach((element) => {
       form.usuario.push(element.id);
+      setCarregar(false)
     });
   }
   return (
-    <>
+  <>    
+   <Modal show={show} onHide={() => setShow(false)}>
+      <Modal.Header closeButton>
+        <Modal.Title>Adicionar Tarefa</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+     
       <div>
         <form onSubmit={handleSubmit}>
-         
-
-          <label>Nome da Tarefa</label>
-          <input
-            type="text"
-            name="tarefa"
-            placeholder="Nome da tarefa"
-            onChange={handleChange}
-          />
-
-          <label>Descrição da Tarefa</label>
-          <input
-            type="text"
-            name="descrição"
-            placeholder="Descrição da Tarefa"
-            onChange={handleChange}
-          />
-
-          <button type="submit">Salvar</button>
+          <div class="mb-3">
+            <label label for="formGroupExampleInput" class="form-label">
+              Nome da Tarefa
+            </label>
+            <input class="form-control" id="formGroupExampleInput"
+              type="text"
+              name="tarefa"
+              placeholder="Nome da tarefa"
+              onChange={handleChange}
+            />
+          </div>
+          <div class="mb-3">
+            <label label for="formGroupExampleInput" class="form-label">
+              Descrição da Tarefa
+            </label>
+            <input class="form-control" id="formGroupExampleInput"
+              type="text"
+              name="descrição"
+              placeholder="Descrição da Tarefa"
+              onChange={handleChange}
+            />
+          </div>
+          <div class="mb-3">
+            <label label for="formGroupExampleInput" class="form-label">
+              Dead Line
+            </label>
+            <input class="form-control" id="formGroupExampleInput"
+              type="date"
+              name="data"
+              placeholder="Nome da tarefa"
+              onChange={handleChange}
+            />
+          </div>
+          <button className="btn btn-primary" type="submit">
+            Salvar
+          </button>
         </form>
       </div>
-
+      
+        <>
       <br></br>
       <UserPool listaUser={listaUser} setListauser={setListaUser} />
+      </>
+      {carregar&&(
       <div>
         {listaUser.map((element) => {
-          return <p>{element.nome}</p>;
+          return <p style={{borderBottom: '1px black solid'}}>{element.nome}</p>;
         })}
-        <button onClick={adicionarUsers}>Adicionar</button>
+        <button className="btn btn-secondary btn-sm" onClick={adicionarUsers}>Adicionar</button>
       </div>
+        )}
+      </Modal.Body>
+      
+      <Modal.Footer className="justify-content-between">
+      </Modal.Footer>
+      </Modal>
+
+
+
+
+
+      
     </>
   );
 }
