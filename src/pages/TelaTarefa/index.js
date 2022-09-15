@@ -27,7 +27,7 @@ function TelaTarefa({ projID, projetos, setProjetos }) {
       }
       form["id_t"] = tarID + 1;
     });
-console.log(tarID)
+  console.log(tarID);
   useEffect(() => {
     setLoading(false);
     async function fecthUsuario() {
@@ -54,11 +54,10 @@ console.log(tarID)
 
   function vincularProjeto() {
     projetos.forEach((element) => {
-     
-      if (element.id_p == projID ) {
+      if (element.id_p == projID) {
         const clonep = { ...element };
         clonep.tarefas.push(tarID + 1);
-       
+
         Submitp(clonep);
       }
     });
@@ -72,7 +71,9 @@ console.log(tarID)
         `https://ironrest.herokuapp.com/85-wd-project/${id}`,
         projeto
       );
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   function appendar() {
@@ -97,8 +98,8 @@ console.log(tarID)
 
   async function handleSubmit(e) {
     e.preventDefault();
-    
-    console.log(tarID)
+
+    console.log(tarID);
     appendar();
 
     vincularProjeto();
@@ -111,7 +112,7 @@ console.log(tarID)
   }
 
   function adicionarUsers() {
-      listaUser.forEach((element) => {
+    listaUser.forEach((element) => {
       form.usuario.push(element.id);
     });
   }
@@ -119,8 +120,6 @@ console.log(tarID)
     <>
       <div>
         <form onSubmit={handleSubmit}>
-         
-
           <label>Nome da Tarefa</label>
           <input
             type="text"

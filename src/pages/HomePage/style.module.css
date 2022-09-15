@@ -1,8 +1,14 @@
+.divpai {
+    background-image: url("../../assets/BackGround/rm218batch4-ning-40.jpg");
+    background-size: cover;
+
+    
+}
 
 .titulohome {
     border-top: 30px;
 }
-
+/* 
 .card {
     border: 2px black solid;
     margin: 10px;
@@ -17,7 +23,7 @@
     font-style: bold;
     font-size: larger;
     padding: 20px;
-}
+} */
 
 .cardpai {
     display: flex;
