@@ -18,7 +18,7 @@ function App() {
 
     <Routes>
 
-    <Route path="/" element={<TelaInicial />} />
+    <Route path="/" element={<HomePage />} />
     <Route path="/Home" element={<HomePage />} />
     <Route path="/PaginaUsuario" element={<PaginaUsuario />} />
     <Route path="/TelaTarefa" element={<TelaTarefa />} />
