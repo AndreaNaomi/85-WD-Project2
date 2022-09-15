@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function DeleteTarefa({  setTarefa, id}) {
   const [tarefa, setUtarefas] = useState([]);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(false);
@@ -52,11 +54,12 @@ function DeleteTarefa({  setTarefa, id}) {
     } catch (error) {
       console.log(error);
     }
+    navigate("/");
   }
 
   return (
     <>
-      <button onClick={handleDelete}>deletar</button>
+      <button className='btn btn-danger'onClick={handleDelete}>deletar</button>
     </>
   );
 }

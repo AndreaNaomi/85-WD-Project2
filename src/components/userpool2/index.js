@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import styles from "./style.module.css";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 function UserPool2({ clicou }) {
   const [usuarios, setUsuarios] = useState([]);
@@ -18,7 +18,6 @@ function UserPool2({ clicou }) {
     }
     fecthUsuario();
   }, [clicou]);
-  
 
   return (
     <>
@@ -26,16 +25,20 @@ function UserPool2({ clicou }) {
         <div className={styles.container}>
           {usuarios.map((element) => {
             return (
-                <Link to={`/usuario/${element._id}`}>
-              <button>
-              <div class="card" style={{width:'18rem'}}>
-              <img  src="https://www.seekpng.com/png/detail/966-9665493_my-profile-icon-blank-profile-image-circle.png" class="card-img-top" alt="..."/>
-              <div class="card-body">
-              <h5 class="card-title">{element.nome}</h5>
-              <p  class="card-text">{element.departamento}</p>
+              <Link to={`/usuario/${element._id}`}>
+                <button>
+                  <div class="card" style={{ width: "18rem" }}>
+                    <img
+                      src="https://www.seekpng.com/png/detail/966-9665493_my-profile-icon-blank-profile-image-circle.png"
+                      class="card-img-top"
+                      alt="..."
+                    />
+                    <div class="card-body">
+                      <h5 class="card-title">{element.nome}</h5>
+                      <p class="card-text">{element.departamento}</p>
+                    </div>
                   </div>
-                </div>
-              </button>
+                </button>
               </Link>
             );
           })}
