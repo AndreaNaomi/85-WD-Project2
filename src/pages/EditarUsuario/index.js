@@ -43,36 +43,36 @@ function EditUser({usuario, setUsuario, id,listatarefa}) {
   return(
     <div>
     <form onSubmit={handleSubmit}>
-      <label>Nome</label>
-      <input
-        value={usuario.nome}
-        type="text"
-        name="nome"
-        placeholder="Nome"
-        onChange={handleChange}
-      />
+    <div class="mb-3">
+            <label for="formGroupExampleInput" class="form-label">
+              Nome
+            </label>
+            <input
+              class="form-control"
+              id="formGroupExampleInput"
+              type="text"
+              name="nome"
+              placeholder="Nome"
+              onChange={handleChange}
+            />
+          </div>
+          <div class="mb-3">
+            <label for="formGroupExampleInput" class="form-label">
+              Email
+            </label>
+            <input
+              class="form-control"
+              id="formGroupExampleInput"
+              type="email"
+              name="email"
+              placeholder="Email"
+              onChange={handleChange}
+            />
+            </div>
 
-      <label>Email</label>
-      <input
-        value={usuario.email}
-        type="email"
-        name="email"
-        placeholder="Email"
-        onChange={handleChange}
-      />
-
-      <label>Departamento</label>
-      <input
-        value={usuario.departamento}
-        type="text"
-        name="departamento"
-        placeholder="Departamento"
-        onChange={handleChange}
-      />
-
-      <button type="submit">Salvar</button>
+      <button className="btn btn-primary" type="submit">Salvar</button>
+      <DeleteUser  usuario={usuario} setUsuario={setUsuario} id={id} listatarefa={listatarefa} />
     </form>
-    <DeleteUser usuario={usuario} setUsuario={setUsuario} id={id} listatarefa={listatarefa} />
   </div>
   
 );

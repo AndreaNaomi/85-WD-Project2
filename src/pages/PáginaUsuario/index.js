@@ -56,31 +56,50 @@ function PaginaUsuario() {
     <>
       <div>
         <form onSubmit={handleSubmit}>
-          <label>Nome</label>
-          <input
-            type="text"
-            name="nome"
-            placeholder="Nome"
-            onChange={handleChange}
-          />
 
-          <label>Email</label>
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            onChange={handleChange}
-          />
+          <div class="mb-3">
+            <label for="formGroupExampleInput" class="form-label">
+              Nome
+            </label>
+            <input
+              class="form-control"
+              id="formGroupExampleInput"
+              type="text"
+              name="nome"
+              placeholder="Nome"
+              onChange={handleChange}
+            />
+          </div>
+          <div class="mb-3">
+            <label for="formGroupExampleInput" class="form-label">
+              Email
+            </label>
+            <input
+              class="form-control"
+              id="formGroupExampleInput"
+              type="email"
+              name="email"
+              placeholder="Email"
+              onChange={handleChange}
+            />
+          </div>
+          <div class="mb-3">
+            <label for="formGroupExampleInput" class="form-label">
+              Departamento
+            </label>
+            <input
+              class="form-control"
+              id="formGroupExampleInput"
+              type="text"
+              name="departamento"
+              placeholder="Departamento"
+              onChange={handleChange}
+            />
+          </div>
+          <button className="btn btn-primary" type="submit">
+            Salvar
+          </button>
 
-          <label>Departamento</label>
-          <input
-            type="text"
-            name="departamento"
-            placeholder="Departamento"
-            onChange={handleChange}
-          />
-
-          <button type="submit">Salvar</button>
         </form>
       </div>
       <h1>usuarios</h1>

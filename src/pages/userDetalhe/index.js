@@ -62,11 +62,11 @@ function UserDetalhe() {
           <p>{usuario.departamento}</p>
         </div>
       )}
-      <h1>ola</h1>
+      
       <div>
         <h2> tarefas</h2>
 
-        <table style={{ margin: "20px" }}>
+        <table class="table table-hover" style={{ margin: "20px" }}>
           <thead>
             <tr>
               <th style={{ padding: "20px" }}>Tarefa</th>
