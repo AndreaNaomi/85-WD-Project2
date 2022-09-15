@@ -8,7 +8,7 @@ function DetalhesProjetos() {
   const [tarefas, setTarefas] = useState([]);
   const [projetos, setProjetos] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  const [showForm, setShowForm] = useState(false);
 
   const { id } = useParams();
   let listatarefas = [];
@@ -58,20 +58,17 @@ function DetalhesProjetos() {
           <p>{projetos.descprojeto}</p>
         </div>
       )}
-      <h1>ola</h1>
+      
       <div>
         <h2> tarefas</h2>
 
-        <table style={{ margin: "20px" }}>
+        <table table class="table table-hover" style={{ margin: "20px" }}>
           <thead>
             <tr>
               <th style={{ padding: "20px" }}>Tarefa</th>
               <th style={{ padding: "20px" }}>Descrição</th>
-              <th style={{ padding: "20px" }}>
-                <Link to="/CreateProject">
-                  <button>Criar Tarefa</button>
-                </Link>
-              </th>
+              <th style={{ padding: "20px" }}>Dead Line</th>
+              
             </tr>
           </thead>
           <tbody>
@@ -85,10 +82,13 @@ function DetalhesProjetos() {
                     <td style={{ padding: "20px" }}>
                       <p>{element.descrição} </p>
                     </td>
+                    <td style={{ padding: "20px" }}>
+                      <p>{element.data} </p>
+                    </td>
 
                     <td style={{ padding: "20px" }}>
                       <Link to={`/tarefa/${element._id}`}>
-                        <button>Detalhes</button>
+                        <button className="btn btn-primary">Detalhes</button>
                       </Link>
                     </td>
                   </tr>
@@ -97,8 +97,12 @@ function DetalhesProjetos() {
           </tbody>
         </table>
       </div>
-      <EditProject projeto={projetos} setProjeto={setProjetos} id={id}/>
-    </>
+      <button onClick={() => setShowForm(!showForm)} className="btn btn-primary">Editar Projeto</button>
+     
+      {showForm === true &&     (
+      <EditProject projeto={projetos} setProjeto={setProjetos} id={id} show={showForm} setShow={setShowForm}/>
+      )}
+      </>
   );
 }
 

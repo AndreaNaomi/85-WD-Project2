@@ -16,7 +16,7 @@ function PaginaUsuario() {
     projetos: [],
   });
 
-  let userID = 210;
+  let userID = 200;
   loading &&
     usuarios.forEach((element) => {
       if (element.id_u > userID) {
