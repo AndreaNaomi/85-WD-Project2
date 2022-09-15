@@ -45,6 +45,7 @@ function PaginaUsuario() {
     } catch (error) {
       console.log(error);
     }
+
     setClicou(!clicou);
   }
   function handleChange(e) {
@@ -55,6 +56,7 @@ function PaginaUsuario() {
     <>
       <div>
         <form onSubmit={handleSubmit}>
+
           <div class="mb-3">
             <label for="formGroupExampleInput" class="form-label">
               Nome
@@ -97,6 +99,7 @@ function PaginaUsuario() {
           <button className="btn btn-primary" type="submit">
             Salvar
           </button>
+
         </form>
       </div>
       <h1>usuarios</h1>
