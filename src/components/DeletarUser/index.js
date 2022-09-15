@@ -53,7 +53,7 @@ function deletar(){
 
   return (
     <>
-      <button onClick={handleDelete}>deletar</button>
+      <button className="btn btn-danger" onClick={handleDelete}>deletar</button>
     </>
   );
 }

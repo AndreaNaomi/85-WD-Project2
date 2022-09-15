@@ -9,6 +9,7 @@ import DetalhesProjetos from './pages/detalhesProjetos';
 import DetalheTarefa from './pages/detalhesTarefas';
 import UserDetalhe from './pages/userDetalhe';
 import NavBar from './components/NavBAr';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (

@@ -28,11 +28,11 @@ function UserPool2({ clicou }) {
             return (
                 <Link to={`/usuario/${element._id}`}>
               <button>
-                <div className={styles.card}>
-                  <div>FOTO AQUI</div>
-                  <div>
-                    <p>{element.nome}</p>
-                    <p>{element.departamento}</p>
+              <div class="card" style={{width:'18rem'}}>
+              <img  src="https://www.seekpng.com/png/detail/966-9665493_my-profile-icon-blank-profile-image-circle.png" class="card-img-top" alt="..."/>
+              <div class="card-body">
+              <h5 class="card-title">{element.nome}</h5>
+              <p  class="card-text">{element.departamento}</p>
                   </div>
                 </div>
               </button>

@@ -46,6 +46,7 @@ function DetalheTarefa() {
   return (
     <>
       <h1>{tarefa.tarefa}</h1>
+      <p>{tarefa.descrição}</p>
 
       {loading && (
         <div className={styles.container}>
