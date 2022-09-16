@@ -21,10 +21,14 @@ function CreateProject() {
   let projID = 400;
   loading &&
     projetos.forEach((element) => {
+      console.log(element)
       if (element.id_p > projID) {
         projID = element.id_p;
       }
-    });
+    })
+    
+    
+    
 
   useEffect(() => {
     setLoading(false);
@@ -36,7 +40,7 @@ function CreateProject() {
       setLoading(true);
     }
     fecthUsuario();
-  }, [loading]);
+  }, []);
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -44,46 +48,52 @@ function CreateProject() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    form["id_p"] = projID + 1;
+    form["id_p"] = projID + 1
+    console.log(projID)
     try {
       await axios.post("https://ironrest.herokuapp.com/85-wd-project", form);
     } catch (error) {
       console.log(error);
     }
-    
   }
 
   return (
     <>
-      <div style={{padding:"20px"}}>
+      <div style={{ padding: "20px" }}>
         <form onSubmit={handleSubmit}>
           <div class="mb-3">
             <label for="formGroupExampleInput" class="form-label">
               Nome do Projeto
             </label>
-            <input class="form-control" id="formGroupExampleInput"
+            <input
+              class="form-control"
+              id="formGroupExampleInput"
               type="text"
               name="nomeprojeto"
               placeholder="Nome do Projeto"
               onChange={handleChange}
             />
-            </div>
+          </div>
           <div class="mb-3">
-          <label for="formGroupExampleInput" class="form-label">
-            Descrição do Projeto
-          </label>
-          <input class="form-control" id="formGroupExampleInput"
-            type="text"
-            name="descprojeto"
-            placeholder="Descrição do Projeto"
-            onChange={handleChange}
-          />
+            <label for="formGroupExampleInput" class="form-label">
+              Descrição do Projeto
+            </label>
+            <input
+              class="form-control"
+              id="formGroupExampleInput"
+              type="text"
+              name="descprojeto"
+              placeholder="Descrição do Projeto"
+              onChange={handleChange}
+            />
           </div>
           <div class="mb-3">
             <label for="formGroupExampleInput" class="form-label">
               Data de Conclusão
             </label>
-            <input class="form-control" id="formGroupExampleInput"
+            <input
+              class="form-control"
+              id="formGroupExampleInput"
               type="date"
               name="data"
               placeholder="Data de Conclusão"
@@ -118,14 +128,20 @@ function CreateProject() {
               <option>Em atraso</option>
             </select>
           </div>
-          <button onClick={() => setShowForm(!showForm)} className="btn btn-primary" type="submit">salvar</button>
+          <button
+            onClick={() => setShowForm(!showForm)}
+            className="btn btn-primary"
+            type="submit"
+          >
+            salvar
+          </button>
         </form>
       </div>
 
       {showForm === true && (
         <TelaTarefa
-        show={showForm}
-        setShow={setShowForm}
+          show={showForm}
+          setShow={setShowForm}
           projID={projID}
           projetos={projetos}
           setProjetos={setProjetos}
