@@ -53,7 +53,7 @@ function PaginaUsuario() {
   }
 
   return (
-    <>
+    <div style={{padding:'20px'}}>
       <div>
         <form onSubmit={handleSubmit}>
 
@@ -104,7 +104,7 @@ function PaginaUsuario() {
       </div>
       <h1>usuarios</h1>
       <UserPool2 clicou={clicou} />
-    </>
+    </div>
   );
 }
 

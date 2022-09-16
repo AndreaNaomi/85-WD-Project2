@@ -46,7 +46,7 @@ function DetalheTarefa() {
   console.log(listausers);
 
   return (
-    <>
+    <div style={{padding:'20px'}}>
       <h1>{tarefa.tarefa}</h1>
       <p>{tarefa.descrição}</p>
       <p>{tarefa.data}</p>
@@ -80,7 +80,7 @@ function DetalheTarefa() {
 
       {showForm === true &&     (
       <TaskeEdit tarefa={tarefa} setTarefa={setTarefa} id={id}  show={showForm} setShow={setShowForm}/>)}
-    </>
+    </div>
   );
 }
 
