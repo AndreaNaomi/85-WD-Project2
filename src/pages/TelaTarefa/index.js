@@ -126,7 +126,7 @@ function TelaTarefa({ projID, projetos, setProjetos, show, setShow }) {
     });
   }
   return (
-  <>    
+    <div style={{padding:'20px'}}>  
    <Modal show={show} onHide={() => setShow(false)}>
       <Modal.Header closeButton>
         <Modal.Title>Adicionar Tarefa</Modal.Title>
@@ -199,7 +199,7 @@ function TelaTarefa({ projID, projetos, setProjetos, show, setShow }) {
 
 
       
-    </>
+    </div>
   );
 }
 

@@ -55,7 +55,7 @@ function CreateProject() {
 
   return (
     <>
-      <div>
+      <div style={{padding:"20px"}}>
         <form onSubmit={handleSubmit}>
           <div class="mb-3">
             <label for="formGroupExampleInput" class="form-label">

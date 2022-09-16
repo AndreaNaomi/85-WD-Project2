@@ -48,7 +48,7 @@ function DetalhesProjetos() {
     });
 
   return (
-    <>
+    <div style={{padding:'20px'}}>
       {loading && (
         <div>
           <h1>{projetos.nomeprojeto}</h1>
@@ -102,7 +102,7 @@ function DetalhesProjetos() {
       {showForm === true &&     (
       <EditProject projeto={projetos} setProjeto={setProjetos} id={id} show={showForm} setShow={setShowForm}/>
       )}
-      </>
+      </div>
   );
 }
 

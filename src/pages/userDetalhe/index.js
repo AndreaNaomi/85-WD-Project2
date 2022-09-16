@@ -56,7 +56,7 @@ function UserDetalhe() {
   console.log(listatarefa);
 
   return(
-    <>
+    <div style={{padding:'20px'}}>
      {loading && (
         <div>
           <h1>{usuario.nome}</h1>
@@ -112,7 +112,7 @@ function UserDetalhe() {
       {showForm === true &&     
       <EditUser id={id} usuario={usuario} setUsuario={setUsuario} listatarefa={listatarefa} show={showForm} setShow={setShowForm} />
       }
-    </>
+    </div>
   )
 }
 
